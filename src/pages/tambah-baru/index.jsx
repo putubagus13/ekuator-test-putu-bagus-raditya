@@ -6,21 +6,37 @@ import {useState} from 'react'
 import Image from 'next/image'
 import Pokemon from '@/assets/pokemon.png'
 import Head from 'next/head'
-import Type from '../../../public/type.json'
-import Clasification from '../../../public/clasification'
 
-function TambahBaru() {
+export const getServerSideProps = async () => {
+    const dataType = await fetch("https://www.eginugraha.com/type.json")
+    const typeResults= await dataType.json()
+
+    const dataClasification = await fetch("https://www.eginugraha.com/classification.json")
+    const clasificationResults = await dataClasification.json()
+    console.log(clasificationResults);
+    return {
+        props: {
+            data: {
+                type: typeResults,
+                clasification: clasificationResults
+            }
+        }
+    }
+}
+
+function TambahBaru({data}) {
+    console.log(data);
     const [type, setType] = useState([]);
     const [name, setName] = useState('')
     const [clasification, setClasification] = useState('')
     const [resistant, setResistant] = useState([])
 
-    const optionsType = Type.map(type => {
+    const optionsType = data.type.map(type => {
         const inputValue = {...type, value: type.name, label: type.name}
         return inputValue
     })
 
-    const optionsClasification = Clasification.map(clasification => {
+    const optionsClasification = data.clasification.map(clasification => {
         const inputValue = {value: clasification, label: clasification}
         return inputValue
     })
