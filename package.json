@@ -9,15 +9,18 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "react": "latest",
+    "next": "latest",
+    "prop-types": "^15.8.1",
     "react-dom": "latest",
-    "next": "latest"
+    "react-icons": "^4.11.0",
+    "react-select": "^5.7.5"
   },
   "devDependencies": {
     "autoprefixer": "latest",
-    "postcss": "latest",
-    "tailwindcss": "latest",
+    "daisyui": "^3.8.0",
     "eslint": "latest",
-    "eslint-config-next": "latest"
+    "eslint-config-next": "latest",
+    "postcss": "latest",
+    "tailwindcss": "latest"
   }
 }
